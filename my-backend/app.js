@@ -88,6 +88,26 @@ app.post("/create",async (req, res) => {
     })
 })
 
+//viewallmy notes
+app.post("/viewmynotes",async (req, res) => {
+    let input = req.body
+    let token=req.headers.token
+    Jwt.verify(token, "newnotApp",async(error,decoded)=>{
+        if (decoded && decoded.email) {
+            noteModel.find(input).then(
+                (items)=>{
+                    res.json({items})
+                }
+            ).catch(
+                (error)=>{
+                    res.json({"status":"Error"})
+                }   )
+        } else {
+            res.json({"status":"Error"})
+        }
+    })
+})
+
 
 app.listen(3030, () => {
     console.log("Server running")
