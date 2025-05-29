@@ -88,7 +88,7 @@ app.post("/create",async (req, res) => {
     })
 })
 
-//viewall notes
+//viewallmy notes
 app.post("/viewmynotes",async (req, res) => {
     let input = req.body
     let token=req.headers.token
