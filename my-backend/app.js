@@ -4,6 +4,7 @@ const Cors = require('cors');
 const Bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
 const userModel = require('./models/users');
+const noteModel = require('./models/notes');
 
 let app = Express()
 app.use(Express.json());
@@ -68,6 +69,23 @@ app.post("/signIn",async(req,res)=>{
             res.json({ "status": "Incorect Password", "Errormessage": error })
         }
     )
+})
+
+// notes creation
+app.post("/create",async (req, res) => {
+    let input = req.body
+    let token = req.headers.token
+    Jwt.verify(token, "newnotApp",async(error,decoded)=>{
+        if (decoded && decoded.email) {
+
+            let result= new noteModel(input)
+            await result.save()
+            console.log(input)
+            res.json({"status":"Note Creation Successfully"})
+        } else {
+            res.json({"status":"Invalid Authentication"})
+        }
+    })
 })
 
 
