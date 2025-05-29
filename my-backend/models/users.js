@@ -5,7 +5,8 @@ const userSchema=Mongoose.Schema(
         name:{
             type:String,
             required:true
-        },phone:String,
+        },
+        phone:String,
         email:{
             type:String,
             required:true,
