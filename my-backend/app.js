@@ -11,14 +11,14 @@ app.use(Express.json());
 app.use(Cors());
 
 Mongoose.connect("mongodb+srv://aseera:aseera@cluster0.x0tifel.mongodb.net/newnotApp?retryWrites=true&w=majority&appName=Cluster0")
-//Sign Up
 app.post("/signUp", async (req, res) => {
 
     let input = req.body
     let hashedPassword = Bcrypt.hashSync(req.body.password, 10)
     console.log(hashedPassword)
     req.body.password = hashedPassword
-    // console.log(data)
+
+
 
     userModel.find({ email: req.body.email })
         .then(
@@ -41,7 +41,7 @@ app.post("/signUp", async (req, res) => {
 
 })
 
-//Sign In
+
 app.post("/signIn",async(req,res)=>{
     let input = req.body
     let result=userModel.find({ email: req.body.email }).then(
@@ -71,7 +71,7 @@ app.post("/signIn",async(req,res)=>{
     )
 })
 
-// notes creation
+
 app.post("/create",async (req, res) => {
     let input = req.body
     let token = req.headers.token
@@ -88,7 +88,25 @@ app.post("/create",async (req, res) => {
     })
 })
 
-//viewallmy notes
+app.put("/editnote/:id", async (req, res) => {
+  const token = req.headers.token;
+
+  Jwt.verify(token, "newnotApp", async (err, decoded) => {
+    if (decoded && decoded.email) {
+      noteModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then((updatedNote) => {
+          if (updatedNote) res.json({ status: "Note updated", note: updatedNote });
+          else res.json({ status: "Note not found" });
+        })
+        .catch(() => res.json({ status: "Update failed" }));
+    } else {
+      res.json({ status: "Unauthorized" });
+    }
+  });
+});
+
+
+
 app.post("/viewmynotes",async (req, res) => {
     let input = req.body
     let token=req.headers.token
@@ -107,6 +125,66 @@ app.post("/viewmynotes",async (req, res) => {
         }
     })
 })
+
+
+
+app.delete("/deletenote/:id", async (req, res) => {
+    const noteId = req.params.id.trim(); 
+    const token = req.headers.token;
+
+    Jwt.verify(token, "newnotApp", async (error, decoded) => {
+        if (error) {
+            return res.status(401).json({ status: "Unauthorized", error: error.message });
+        }
+
+        if (decoded && decoded.email) {
+            try {
+                await noteModel.findByIdAndDelete(noteId);
+                res.json({ status: "Note deleted" });
+            } catch (err) {
+                res.status(500).json({ status: "Error", error: err.message });
+            }
+        } else {
+            res.status(403).json({ status: "Invalid token" });
+        }
+    });
+});
+
+
+app.post("/searchnotes", async (req, res) => {
+    const { userId, notesDate, keyword } = req.body;
+    const token = req.headers.token;
+
+    Jwt.verify(token, "newnotApp", async (error, decoded) => {
+        if (error) {
+            return res.status(401).json({ status: "Unauthorized", error: error.message });
+        }
+
+        if (decoded && decoded.email) {
+            try {
+                const filter = { userId };
+                if (notesDate) {
+                    const date = new Date(notesDate);
+                    const nextDate = new Date(date);
+                    nextDate.setDate(date.getDate() + 1);
+
+                    filter.notesDate = {
+                        $gte: date,
+                        $lt: nextDate
+                    };
+                }
+
+                const results = await noteModel.find(filter);
+                res.json({ status: "success", items: results });
+            } catch (err) {
+                res.status(500).json({ status: "Error fetching notes", error: err.message });
+            }
+        } else {
+            res.status(403).json({ status: "Invalid token" });
+        }
+    });
+});
+
 
 
 app.listen(3030, () => {
