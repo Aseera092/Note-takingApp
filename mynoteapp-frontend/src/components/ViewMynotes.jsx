@@ -9,19 +9,22 @@ const ViewMynotes = () => {
   const userId = { userId: sessionStorage.getItem("userId") };
   const navigate = useNavigate();
 
-  const fetchData = () => {
-    axios.post("http://localhost:3030/viewmynotes", userId, {
-      headers: {
-        token: token,
-        "Content-Type": "application/json"
-      }
-    }).then((response) => {
-      console.log(response.data.items);
-      setData(response.data.items);
-    }).catch((error) => {
-      console.log("Fetch error:", error);
-    });
-  };
+ const fetchData = () => {
+  axios.post("http://localhost:3030/viewmynotes", userId, {
+    headers: {
+      token: token,
+      "Content-Type": "application/json"
+    }
+  }).then((response) => {
+    const sortedNotes = response.data.items.sort(
+      (a, b) => new Date(b.notesDate) - new Date(a.notesDate)
+    );
+    setData(sortedNotes);
+  }).catch((error) => {
+    console.log("Fetch error:", error);
+  });
+};
+
 
   const deleteNote = (noteId) => {
     axios.delete(`http://localhost:3030/deletenote/${noteId}`, {
