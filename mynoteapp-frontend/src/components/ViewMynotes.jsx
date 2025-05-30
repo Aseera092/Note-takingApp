@@ -61,13 +61,10 @@ const ViewMynotes = () => {
                     <p className="card-text">{value.notesDate}</p>
                     
                     <button
-                      onClick={() => navigate(`/edit/${value._id}`)}
-                      className="btn btn-secondary btn-sm mt-2">
-                      Edit
+                      onClick={() => navigate(`/edit/${value._id}`)} className="btn btn-secondary btn-sm mt-2"> Edit
                     </button>
                     <button
-                      className="btn btn-danger btn-sm mt-2 me-2"
-                      onClick={() => deleteNote(value._id)}>
+                      className="btn btn-danger btn-sm mt-2 me-2" onClick={() => deleteNote(value._id)}>
                       Delete
                     </button>
                   </div>
