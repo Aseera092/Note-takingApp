@@ -22,7 +22,7 @@ const ViewMynotes = () => {
     setData(sortedNotes);
   }).catch((error) => {
     console.log("Fetch error:", error);
-  });
+   }); 
 };
 
 
