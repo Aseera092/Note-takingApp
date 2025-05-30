@@ -24,11 +24,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex;
+  place-items: center; */
   min-width: 320px;
   min-height: 100vh;
+  
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -66,3 +68,238 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left-panel {
+  width: 50%;
+  background: linear-gradient(to bottom, #056782, #3e0664);
+  color: white;
+  text-align: center;
+  padding: 60px 30px;
+  position: relative;
+}
+
+
+.left-panel .app-name {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.left-panel .description {
+  font-size: 14px;
+  margin: 20px auto;
+  max-width: 300px;
+}
+
+.left-panel footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.right-panel {
+  width: 50%;
+  background-image: url('https://png.pngtree.com/background/20230320/original/pngtree-blue-background-aesthetic-waves-new-design-2023-vector-picture-image_2151314.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.form-box {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.checkbox-group input {
+  margin-right: 8px;
+}
+
+.checkbox-group a {
+  color: #0367fd;
+  text-decoration: none;
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn.primary {
+  background-color: #0367fd;
+  color: white;
+}
+
+.btn.secondary {
+  background-color: #eee;
+  color: #333;
+}
+
+
+.bg-primary-dark-custom {
+    background-color: #1a2a51 !important; 
+}
+.container-xxl {
+  max-width: 1400px;
+}
+
+
+
+#root {
+    height: 100%;
+    width:100%;
+}
+
+.background {
+    background-image: url('https://png.pngtree.com/background/20230320/original/pngtree-blue-background-aesthetic-waves-new-design-2023-vector-picture-image_2151314.jpg');
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; 
+    min-width:100vw;/* Make sure the container is tall enough to show the background */
+    display: flex; /* Use flexbox to center content vertically/horizontally */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    padding: 20px; /* Add some padding around the form */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+.form-container-wrapper {
+    background-color: rgba(255, 255, 255, 0.73); /* Slightly transparent white background for the form */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Limit the form width */
+    width: 100%;
+}
+
+/* Correcting Bootstrap class typos */
+.form-control { /* Standard Bootstrap class for inputs */
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+
+.create-background {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/003/557/256/original/abstract-blue-and-orange-wave-business-background-free-vector.jpg');
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; 
+    min-width:100wd;/* Make sure the container is tall enough to show the background */
+    display: flex; /* Use flexbox to center content vertically/horizontally */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    padding: 20px; /* Add some padding around the form */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+.form-container-wrapper {
+    background-color: rgba(255, 255, 255, 0.73); /* Slightly transparent white background for the form */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Limit the form width */
+    width: 100%;
+}
+
+/* Correcting Bootstrap class typos */
+.form-control { /* Standard Bootstrap class for inputs */
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+.view-background {
+    background-image: url('https://img.freepik.com/premium-vector/abstract-blue-black-dynamic-geometric-shapes-border-white-background-vector-abstract-graphic-design-banner-pattern-presentation-background-web-template_181182-34872.jpg');
+    background-size: cover; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    min-height: 100vh; 
+    min-width:100wd;/* Make sure the container is tall enough to show the background */
+    display: flex; /* Use flexbox to center content vertically/horizontally */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    padding: 20px; /* Add some padding around the form */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+.navbar {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
